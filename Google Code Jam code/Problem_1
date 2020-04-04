@@ -1,0 +1,36 @@
+import numpy as np
+t = int(input())
+for i in range(t):
+    n = int(input())
+    arr = np.zeros((n,n), dtype=int)
+    sumd = 0
+    c = 0
+    r = 0
+    sumc = np.zeros((n,), dtype=int)
+    sumr = np.zeros((n,), dtype=int)
+    for k in range(n):
+        sumr[k] = k+1
+    sumc = sumr = set(sumr)
+    #print(sumr,sumc)
+    
+    for k in range(n):
+        arr1 = input().strip().split(' ')
+        for j in range(len(arr1)):
+            arr[k][j] += int(arr1[j])
+            
+    for k in range(n):
+        arr_c = set(arr[:,k])
+        arr_r = set(arr[k,])
+        if arr_c == sumc:
+            c += 0
+        else:
+            c += 1
+        if arr_r == sumr:
+            r += 0
+        else:
+            r += 1
+        
+        
+    #print(arr)
+    sumd = sum(arr.diagonal())
+    print("Case #" + str(i+1) + ": " + str(sumd) + " " + str(r) + " " + str(c))
