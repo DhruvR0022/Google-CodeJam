@@ -1,0 +1,46 @@
+t = int(input())
+for d in range(t):
+    s = input().strip()
+    new_s = []
+    num_s = []
+    j = 0
+    k= 0
+    for i in range(len(s)):
+        if i == 0:
+            new_s.append(s[j])
+            num_s.append(int(s[k]))
+            #print(j,k)
+        else:
+            if s[i] == s[i-1]:
+                new_s[j] = str(new_s[j]) + str(s[i])
+                #print(j,k)
+            else:
+                j += 1
+                k += 1
+                new_s.append(s[i])
+                num_s.append(int(s[i]))
+                #print(j,k)
+    #print(new_s,num_s)
+    ans = ''
+    countL = 0
+    for i in range(len(new_s)):
+        if i == 0:
+            countL = num_s[i]
+            for j in range(countL):
+                ans += '('  
+            ans += new_s[i]
+        else:
+            if countL > num_s[i]:
+                for j in range(countL - num_s[i]):
+                    ans += ')'
+                ans += new_s[i]
+            if countL < num_s[i]:
+                for j in range(num_s[i] - countL):
+                    ans += '('
+                ans += new_s[i]
+            countL = num_s[i]
+    if countL > 0:
+        for i in range(countL):
+            ans += ')'
+
+    print("Case #" + str(d+1) + ": " + ans )
